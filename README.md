@@ -1,8 +1,8 @@
 # CBC-Scraper.js
-A JavaScript library for scraping free live IPTV stream URLs from CBC.ca
+A JavaScript library for fetching free live IPTV stream URLs from CBC.ca
 
 
-A pure JavaScript library for easily fetching live stream urls (m3u format) for TV channels from [CBC.ca](https://cbc.ca)
+A pure JavaScript library for easily fetching free live stream urls (m3u format) for live TV channels from [CBC.ca](https://cbc.ca)
 
 > <b>Note</b>: CBC content is geo-restricted to Canada, to use this in another country see [Geo-Restrictions](#geo-restrictions)
 
