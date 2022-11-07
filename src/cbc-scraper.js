@@ -3,13 +3,15 @@
 
 
 // Functions to call the core functions below.. 
+export class CBC_News_Scraper {
+ 
 
   
-async function CBC_getAllChannels()
+async getAllChannels()
 {
   try {
-    let result = await fetchURL("url", "https://tpfeed.cbc.ca/f/ExhSPC/t_t3UKJR6MAT?pretty=true&sort=pubDate%7Cdesc");
-return await fetchAllChannelURLs(result)
+    let result = await this.fetchURL("url", "https://tpfeed.cbc.ca/f/ExhSPC/t_t3UKJR6MAT?pretty=true&sort=pubDate%7Cdesc");
+return await this.fetchAllChannelURLs(result)
   } catch( err ) {
     console.error( err.message);
     return {cbc_error: err.message}
@@ -19,9 +21,9 @@ return await fetchAllChannelURLs(result)
 
 
 
-async function CBC_getChannel(channel_title){
+async getChannel(channel_title){
   try {
-    let result = await fetchURL("url", "https://tpfeed.cbc.ca/f/ExhSPC/t_t3UKJR6MAT?pretty=true&sort=pubDate%7Cdesc");
+    let result = await this.fetchURL("url", "https://tpfeed.cbc.ca/f/ExhSPC/t_t3UKJR6MAT?pretty=true&sort=pubDate%7Cdesc");
     let channels = result.entries
     let foundResults = false
     for (const channel in channels){
@@ -31,7 +33,7 @@ async function CBC_getChannel(channel_title){
         let results = {channel_title: channels[channel].title,
                        description: channels[channel].description,
                          channel_image: channels[channel].cbc$staticImage,
-                       stream_url: await  getStreamData(channels[channel].content[0].url) }
+                       stream_url: await  this.getStreamData(channels[channel].content[0].url) }
        // console.log(results)
        
       return results
@@ -49,10 +51,7 @@ async function CBC_getChannel(channel_title){
 }
 
 
-CBC_getChannel("Toronto").then(function(search_results) {
-  console.log(search_results)
- });  //////////////////
- 
+
 
 
 
@@ -66,7 +65,7 @@ CBC_getChannel("Toronto").then(function(search_results) {
 
 
 // Core function to fetch URL from text (for XML) or JSON file
-async function fetchURL(fetchType, url) {
+async fetchURL(fetchType, url) {
 
         //console.log(url)
         if (fetchType === "text"){
@@ -86,7 +85,7 @@ async function fetchURL(fetchType, url) {
 
 
 // Core function to fetch all channels
-async function fetchAllChannelURLs(json){
+async fetchAllChannelURLs(json){
   let results = []
   for (const channel in json){
      for (const id in json[channel]){
@@ -100,7 +99,7 @@ async function fetchAllChannelURLs(json){
           results.push({channel_title: json[channel][id].title,
                        description: json[channel][id].description,
                          channel_image: json[channel][id].cbc$staticImage,
-                       stream_url: await  getStreamData(json[channel][id].content[0].url) })
+                       stream_url: await  this.getStreamData(json[channel][id].content[0].url) })
           
           
         }
@@ -109,11 +108,11 @@ async function fetchAllChannelURLs(json){
 }
 
 
-async function getStreamData(url)
+async getStreamData(url)
 {
   try {
-    let result = await fetchURL("text", url);
-    return parseXML(result)
+    let result = await this.fetchURL("text", url);
+    return this.parseXML(result)
   } catch( err ) {
     console.error( err.message);
     return {cbc_error: err.message}
@@ -121,7 +120,7 @@ async function getStreamData(url)
 }
 
 // Core function to parse XML files from CBC
-async function parseXML(file){
+async parseXML(file){
   
 var xmlDoc;
 var text = file
@@ -139,3 +138,13 @@ const found = videoTag.match(regex);
    // return the parsed stream SRC 
 return await parsedResults
 }//
+    
+  }
+
+var CBC_News = new CBC_News_Scraper();
+
+
+CBC_News.getChannel("Toronto").then(function(search_results) {
+  console.log(search_results)
+ });  //////////////////
+ 
