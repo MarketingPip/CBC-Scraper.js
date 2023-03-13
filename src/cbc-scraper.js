@@ -1,6 +1,15 @@
 export function CBC_News() {
 
-
+if (typeof node !== 'undefined' || typeof process === 'object') {
+    try {
+        let fetch = require('node-fetch');
+    } catch (e) {
+        console.log('node-fetch is not installed. Please install node-fetch to use "CBC-News.js".');
+        if (typeof process !== 'undefined') {
+            process.exit(1);
+        }
+    }
+}
 
     async function getAllChannels() {
         try {
