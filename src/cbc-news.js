@@ -146,5 +146,6 @@ export function CBC_News() {
 
     return {
         getChannel: getChannel,
-        getAllChannels: getAllChannels,
+        getAllChannels: getAllChannels
     }
+}
