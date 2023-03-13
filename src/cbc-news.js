@@ -1,15 +1,15 @@
 export function CBC_News() {
 
-if (typeof node !== 'undefined' || typeof process === 'object') {
-    try {
-        let fetch = require('node-fetch');
-    } catch (e) {
-        console.log('node-fetch is not installed. Please install node-fetch to use "CBC-News.js".');
-        if (typeof process !== 'undefined') {
-            process.exit(1);
+    if (typeof node !== 'undefined' || typeof process === 'object') {
+        try {
+            let fetch = require('node-fetch');
+        } catch (e) {
+            console.log('node-fetch is not installed. Please install node-fetch to use "CBC-News.js".');
+            if (typeof process !== 'undefined') {
+                process.exit(1);
+            }
         }
     }
-}
 
     async function getAllChannels() {
         try {
@@ -19,8 +19,6 @@ if (typeof node !== 'undefined' || typeof process === 'object') {
             throw err
         }
     }
-
-
 
 
     async function getChannel(channel_title) {
@@ -65,9 +63,6 @@ if (typeof node !== 'undefined' || typeof process === 'object') {
 
     /// CORE FUNCTIONS BELOW
 
-
-
-
     // Core function to fetch URL from text (for XML) or JSON file
     async function fetchURL(fetchType, url) {
 
@@ -84,9 +79,6 @@ if (typeof node !== 'undefined' || typeof process === 'object') {
 
 
     }
-
-
-
 
     // Core function to fetch all channels
     async function fetchAllChannelURLs(json) {
@@ -126,10 +118,10 @@ if (typeof node !== 'undefined' || typeof process === 'object') {
     }
 
     // Core function to parse XML files from CBC
-    async function parseXML(file) {
+    function parseXML(file) {
 
-        var xmlDoc;
-        var text = file
+        let xmlDoc;
+        let text = file
 
         xmlDoc = new DOMParser().parseFromString(text, 'text/xml');
         let videoTag = xmlDoc.querySelector("video").outerHTML
@@ -142,7 +134,7 @@ if (typeof node !== 'undefined' || typeof process === 'object') {
         parsedResults = parsedResults.replace('"', '');
 
         // return the parsed stream SRC 
-        return await parsedResults
+        return parsedResults
     } //
 
 
@@ -150,5 +142,3 @@ if (typeof node !== 'undefined' || typeof process === 'object') {
         getChannel: getChannel,
         getAllChannels: getAllChannels,
     }
-
-}
