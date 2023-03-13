@@ -1,8 +1,8 @@
-# CBC-Scraper.js
+# CBC-News.js
 
 <div align="center">
 <a href="https://github.com/MarketingPipeline/TheMovieDB-API-Wrapper.js"> 
-<img height=350 alt="Repo Banner for TheMovieDB-API-Wrapper.js" src="https://capsule-render.vercel.app/api?type=waving&color=539bf5&height=300&section=header&text=CBC-Scraper.js&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Fetch%20live%20stream%20urls%20from%20CBC.ca%20&descAlignY=60&descAlign=50"></img></a>
+<img height=350 alt="Repo Banner for TheMovieDB-API-Wrapper.js" src="https://capsule-render.vercel.app/api?type=waving&color=539bf5&height=300&section=header&text=CBC-News.js&fontSize=60&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Fetch%20live%20stream%20urls%20from%20CBC.ca%20&descAlignY=60&descAlign=50"></img></a>
 
 </div>  
     
@@ -36,15 +36,14 @@ A pure JavaScript library for easily fetching free live stream urls (m3u format)
 
 
 ```js
-// CBC Scraper Example - get all channels. 
-import {CBC_News_Scraper} from 'https://cdn.jsdelivr.net/gh/MarketingPipeline/TheMovieDB-API-Wrapper.js/src/themoviedb-api-wrapper.js' 
+// CBC-News.js Example - get all channels. 
+import {CBC_News} from 'https://cdn.jsdelivr.net/gh/MarketingPipeline/TheMovieDB-API-Wrapper.js/src/themoviedb-api-wrapper.js' 
 
-let CBC_News = new CBC_News_Scraper();
-
-
-CBC_News.getChannel("Toronto").then(function(search_results) {
-  console.log(search_results)
- });  //////////////////
+try {
+    console.log(await CBC_News().getAllChannels()) // returns a JSON array of objects.
+} catch (error) {
+    console.log(error.message)
+}
 ```
 
 This will return an array of all channel details & stream URLs. 
@@ -62,14 +61,14 @@ This will return an array of all channel details & stream URLs.
 <br>
 
 ```js
-/// CBC Scraper Example - get single channel example.
+/// CBC-News.js Example - get single channel example.
+import {CBC_News} from 'https://cdn.jsdelivr.net/gh/MarketingPipeline/TheMovieDB-API-Wrapper.js/src/themoviedb-api-wrapper.js' 
 
-let CBC_News = new CBC_News_Scraper();
-
-CBC_News.CBC_getChannel("Toronto").then(function(search_results) {
-  console.log(search_results)
- });  //////////////////
- 
+try {
+    console.log(await CBC_News().getChannel("Toronto")) // returns a JSON object.
+} catch (error) {
+    console.log(error.message)
+}
 
 ```
 
@@ -77,24 +76,6 @@ CBC_News.CBC_getChannel("Toronto").then(function(search_results) {
 This will return a single JSON object with channel details + the stream URL. 
 
 </details>
-
-
-<br> 
-
-## CDN
-
-### URL
-
-    <script type="module" src="https://cdn.jsdelivr.net/gh/MarketingPipeline/TheMovieDB-API-Wrapper.js/dist/themoviedb-api-wrapper.min.js" defer></script> 
-
-### Import 
-
-    import {fetch_tmdb_info, tmdb_api_key} from 'https://cdn.jsdelivr.net/gh/MarketingPipeline/TheMovieDB-API-Wrapper.js/dist/themoviedb-api-wrapper.min.js'
-    
-
-
-
-
 
 
 
