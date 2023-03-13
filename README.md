@@ -37,10 +37,10 @@ A pure JavaScript library for easily fetching free live stream urls (m3u format)
 
 ```js
 // CBC-News-Streams.js Example - get all channels. 
-import {CBC_News} from 'https://cdn.jsdelivr.net/gh/MarketingPipeline/CBC-News-Streams.js@v1.0.0/dist/cbc-news-streams.min.js' 
+import {CBC_News_Streams} from 'https://cdn.jsdelivr.net/gh/MarketingPipeline/CBC-News-Streams.js@v1.0.0/dist/cbc-news-streams.min.js' 
 
 try {
-    console.log(await CBC_News().getAllChannels()) // returns a JSON array of objects.
+    console.log(await CBC_News_Streams().getAllChannels()) // returns a JSON array of objects.
 } catch (error) {
     console.log(error.message)
 }
@@ -65,7 +65,7 @@ This will return an array of all channel details & stream URLs.
 import {CBC_News} from 'https://cdn.jsdelivr.net/gh/MarketingPipeline/CBC-News-Streams.js@v1.0.0/dist/cbc-news-streams.min.js' 
 
 try {
-    console.log(await CBC_News().getChannel("Toronto")) // returns a JSON object.
+    console.log(await CBC_News_Streams().getChannel("Toronto")) // returns a JSON object.
 } catch (error) {
     console.log(error.message)
 }
