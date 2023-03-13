@@ -1,3 +1,9 @@
+/**!
+ * @license CBC-News.js - A JavaScript library for fetching free live TV stream URLs from CBC.ca / CBC News
+ * VERSION: 1.0.0
+ * LICENSED UNDER MIT LICENSE
+ * MORE INFO CAN BE FOUND AT https://github.com/MarketingPipeline/CBC-News.js/
+ */
 export function CBC_News() {
 
     if (typeof node !== 'undefined' || typeof process === 'object') {
@@ -103,7 +109,7 @@ export function CBC_News() {
                 }
             }
         }
-        return await results
+        return results
     }
 
 
